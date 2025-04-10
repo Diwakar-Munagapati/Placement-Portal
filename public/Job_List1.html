@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Development Internships</title>
+    <link rel="stylesheet" href="Comp_details_Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="S1">
+        <div class="S1-a">
+            <img src="Views/CLUB_LOGO-1.png" alt="Club Logo">
+        </div>
+        <div class="S1-b">
+            <nav>
+                <a href="">PLACEMENT</a>
+                <a href="">HELP</a>
+            </nav>
+        </div>
+    </div>
+    <div class="Part_2">
+        <p>Business Development Intern</p>
+    </div>
+    <div class="Part_4" id="jobListings">
+        <!-- Jobs will be loaded here -->
+        <div class="Sub_4-1" id="loading">
+            <div class="Sub_4a">
+                <h1>Loading jobs...</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const jobListingsContainer = document.getElementById('jobListings');
+    
+    // Show loading state
+    jobListingsContainer.innerHTML = '<div class="Sub_4-1"><div class="Sub_4a"><h2>Loading jobs...</h2></div></div>';
+    
+    // Fetch all jobs from the server
+    fetch('/api/jobs1')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch jobs: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(jobs => {
+            // Clear loading message
+            jobListingsContainer.innerHTML = '';
+            
+            if (jobs.length === 0) {
+                const noJobsDiv = document.createElement('div');
+                noJobsDiv.className = 'Sub_4-1';
+                noJobsDiv.innerHTML = '<div class="Sub_4a"><h1>No jobs available</h1><p>Please check back later for new opportunities.</p></div>';
+                jobListingsContainer.appendChild(noJobsDiv);
+                return;
+            }
+            
+            jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'Sub_4-1';
+                
+                // Safely handle potentially missing data
+                const company = job.company || 'Company Name Not Available';
+                const title = job.title || 'Position Not Specified';
+                const industry = job.industry || 'N/A';
+                const stipend = job.stipend || 'N/A';
+                const location = job.location || 'Remote/Not Specified';
+                
+                jobCard.innerHTML = `
+                    <div class="Sub_4a">
+                        <a href="job_details1.html?id=${job.id}">
+                            <h1>${company}</h1>
+                            <p>${title}</p>
+                            <pre>Industry - ${industry} | Stipend - ${stipend} | &#128205;${location}</pre>
+                        </a>
+                    </div>
+                    <div class="Sub_4b">
+                        <img src="${job.logo || 'comp_logo.png'}" alt="${company} Logo" onerror="this.src='comp_logo.png'">
+                    </div>
+                `;
+                
+                jobListingsContainer.appendChild(jobCard);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
+            jobListingsContainer.innerHTML = '';
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'Sub_4-1';
+            errorDiv.innerHTML = '<div class="Sub_4a"><h1>Error</h1><p>Failed to load job listings. Please try again later.</p></div>';
+            jobListingsContainer.appendChild(errorDiv);
+        });
+});    </script>
+</body>
+</html>

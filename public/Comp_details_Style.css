@@ -1,0 +1,382 @@
+* {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Header section */
+.S1 {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  background-color: #f5f0b8;
+  justify-content: space-between;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.S1-a {
+  display: flex;
+  align-items: center;
+}
+
+.S1-a img {
+  height: 200px;
+  width: auto;
+}
+
+.S1-b {
+  display: flex;
+  align-items: center;
+}
+
+.S1-b nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.S1-b a {
+  text-decoration: none;
+  color: black;
+  padding: 10px 15px;
+  font-size: clamp(14px, 2vw, 16px);
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* Main title */
+.Part_2 {
+  text-align: left;
+  font-size: clamp(30px, 5vw, 57px);
+  margin: 40px 20px 20px;
+  text-decoration: none;
+  width: auto;
+}
+
+/* Job listings container */
+.Part_4 {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.Part_4 button {
+  height: 30px;
+  width: 70px;
+  font-size: 18px;
+  border: 3px solid black;
+  margin-top: 140px;
+}
+
+/* Job listing card */
+.Sub_4-1 {
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 150px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: white;
+  overflow: hidden;
+}
+
+.Sub_4a {
+  flex: 1;
+  min-width: 200px;
+  padding-right: 20px;
+}
+
+.Sub_4a a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.Sub_4a h1 {
+  font-size: clamp(20px, 3vw, 30px);
+  margin-bottom: 10px;
+}
+
+.Sub_4a p {
+  font-size: clamp(14px, 2vw, 15px);
+  margin-bottom: 15px;
+}
+
+.Sub_4a pre {
+  font-family: 'Inter', sans-serif;
+  white-space: pre-wrap;
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #797979;
+  word-spacing: normal;
+}
+
+.Sub_4b {
+  flex: 0 0 200px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.Sub_4b button {
+  margin-top: 70%;
+  margin-right: 40px;
+  width: 150px;
+  border-radius: 10px;
+  padding: 2px 20px 20px;
+}
+
+.Sub_4b img {
+  position: absolute;
+  max-width: 100%;
+  margin-top: 15%;
+  margin-right: 5%;
+  max-height: 80px;
+  margin-bottom: 180px; 
+  object-fit: contain;
+}
+
+.Sub_4-1 hr {
+  width: 1150px;
+  margin: 20px 0 30px -2px;
+}
+
+/* Job description section */
+.Part_5 {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 150px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  background-color: white;
+}
+
+.Part_5 h1 {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.Part_5 hr {
+  margin: 20px 0;
+}
+#Responsibilities{
+  padding-top: -10px;
+}
+.Sub_5-1 {
+  width: 100%;
+  font-size: 18px;
+}
+
+.Sub_5-1 label {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.Sub_5-1 span {
+  display: inline-block;
+  padding-left: 5px;
+}
+
+/* For multi-line content that appears after a <br> */
+.Sub_5-1 br + span {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px 0 15px;
+}
+
+/* Add spacing between sections */
+.Sub_5-1 br + br {
+  display: block;
+  content: "";
+  margin-top: 5px;
+}
+
+/* Specific style for About Company section which has a <br> after label */
+.Sub_5-1 label + br + span {
+  padding-left: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Mobile Media Queries */
+@media screen and (max-width: 768px) {
+  /* Header section */
+  .S1 {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      height: 120px;
+  }
+  
+  .S1-a img {
+      max-width: 90%;
+      max-height: 150%;
+      margin: 0 auto;
+      margin-top: -60px;
+      display: block;
+  }
+  
+  .S1-b nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: -100px;
+  }
+  
+  .S1-b nav a {
+      margin: 0 30px;
+      font-size: 40px;
+  }
+  
+  /* Job details section */
+  .Part_4 {
+      margin: 10px;
+  }
+  
+  .Part_4 .Sub_4-1 {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      max-height: 180px;
+  }
+  
+  /* Content section (top) */
+  .Sub_4a {
+      width: 90%;
+      margin: 5px 0 10px;
+      order: 1; /* Display first */
+      overflow: hidden; /* Hide overflow content */
+  }
+  
+  .Sub_4a h1 {
+      font-size: 18px;
+      margin-top: 0;
+      margin-bottom: 3px;
+  }
+  
+  .Sub_4a p {
+      margin: 3px 0;
+      font-size: 14px;
+  }
+  
+  .Sub_4a pre {
+      white-space: pre-wrap;
+      font-size: 12px;
+      margin: 3px 0;
+     padding-bottom: 10px;
+  }
+  
+  .Sub_4a hr {
+      margin: 5px 0;
+      width: 100%;
+  }
+  
+  /* Image and button section (bottom) */
+  .Sub_4b {
+      width: 0%;
+      display: flex;
+      flex-direction: row; /* Changed to row for horizontal layout */
+      align-items: center;
+      order: 2; /* Display after content */
+      margin-top: 30px;
+  }
+  
+  .Sub_4bimg {
+      margin-right: 10px; /* Small gap between image and button */
+  }
+  
+  .Sub_4b img {
+      max-width: 100px;
+      height: auto;
+      margin: 5px 0 0;
+      left: 30%;
+  }
+  
+  .Sub_4bbut {
+      flex-grow: 1;
+  }
+  
+  .Sub_4b button {
+      width: 100%;
+      max-width: 250px;
+      padding: 6px 12px;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 0;
+  }
+  
+  /* Job description section */
+  .Part_5 {
+      padding: 15px;
+  }
+  
+  .Part_5 h1 {
+      font-size: 25px;
+      padding-bottom: 10px;
+  }
+  
+  .Sub_5-1 {
+      font-size: 14px;
+  }
+  #AC{
+    margin: px;
+  }
+  
+  .Sub_5-1 label {
+      display: block;
+      margin-top: 0px;
+  }
+  
+  .Sub_5-1 span {
+      display: block;
+      padding: 5px 0;
+  }
+  
+  .Sub_5-1 br + span {
+      padding: 0px;
+      margin-left: 0;
+  }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+  .S1-b nav a {
+      font-size: 12px;
+  }
+  
+  .Sub_4a h1 {
+      font-size: 18px;
+  }
+  
+  .Sub_4a pre,
+  .Sub_5-1 {
+      font-size: 12px;
+  }
+  
+  .Sub_4a #jobSummary {
+      flex-direction: column;
+  }
+  
+  .Sub_4b img {
+      max-width: 120px;
+  }
+  
+  .Part_5 h1 {
+      font-size: 18px;
+  }
+}

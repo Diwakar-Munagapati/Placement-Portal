@@ -1,0 +1,452 @@
+/* Base styles */
+body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  pre{
+    font-family: 'Inter',sans-serif;
+  }
+  
+  .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  /* Header section */
+  .S1 {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      margin-top: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 0 20px;
+      box-sizing: border-box;
+  }
+  
+  .S1-a {
+      position: absolute;
+      left: 20px;
+  }
+  
+  .S1-b {
+      align-items: center;
+      display: flex;
+      font-weight: bolder;
+  }
+  
+  .S1-b img {
+      margin-top: 0px;
+      height: auto;
+      max-height: 100px;
+      width: auto;
+  }
+  
+  .S1-b p {
+      margin-left: 10px;
+      font-size: clamp(14px, 2.5vw, 20px); /* Responsive font size */
+  }
+  
+  /* Navigation section */
+  .Part_1 {
+      background-color: #eddf9e;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      padding-bottom: 50px;
+      min-height: 400px;
+      height: auto;
+  }
+  
+  .Sub_1-1 {
+      padding-top: 40px;
+      padding-bottom: 30px;
+      text-align: center;
+      width: 100%;
+  }
+
+  .mobile-menu-container {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 0 0;
+  }
+  
+  /* Mobile menu toggle button (hamburger) */
+  .mobile-menu-toggle {
+    display: inline-block;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  
+  .mobile-menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-menu-toggle span:last-child {
+    margin-bottom: 0;
+  }
+  
+  .Sub_1-1 nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  
+  .Sub_1-1 a {
+      text-decoration: none;
+      color: black;
+      padding: 10px 50px;
+      font-size: clamp(14px, 2vw, 16px);
+      white-space: nowrap;
+  }
+  
+  .Sub_1-2 {
+      padding: 20px;
+      font-size: clamp(16px, 3vw, 25px);
+      font-family: 'Inter', sans-serif;
+      max-width: 100%;
+      box-sizing: border-box;
+  }
+  
+  .Sub_1-3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+  }
+
+  .Sub_1-3 button{
+    z-index: 1000;
+  }
+  
+  .Sub_1-3 img {
+      max-width: 50%;
+      padding: 50;
+      height: auto;
+      max-height: 170px;
+  }
+  
+  .S3-b {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+      justify-content: center;
+  }
+  
+  .S3-b button {
+      background-color: white;
+      border: none;
+      border-radius: 10px;
+      height: 30px;
+      width: 100px;
+      cursor: pointer;
+  }
+  
+  /* Design section */
+  .Part_2 {
+      background-image: url('Design.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 50vh;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      margin-top: -150px;
+  }
+  
+  /* Content section */
+  .Part_3 {
+      border: none;
+      background-color: white;
+      width: 90%;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 3;
+      border-radius: 30px;
+      position: relative;
+      box-sizing: border-box;
+  }
+  
+  .Sub_3-1{
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto;
+      text-align: center;
+  }
+  
+  .Sub_3-1 img {
+    max-width: 100%;
+    height: auto;
+    width: 100%; /* Added to ensure the image takes full width of its container */
+}
+
+/* Keep Sir.png (Sub_3-5) at its current size */
+.Sub_3-5 {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    height: ;
+    text-align: center;
+}
+  
+  .Sub_3-2, .Sub_3-4 {
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+      width: 100%;
+  }
+  
+  .icfai-text, .NJ-text {
+      font-size: clamp(60px, 15vw, 150px);
+      font-weight: 500;
+      font-family: 'Crimson Pro', serif;
+      color: #746345;
+      margin: 0;
+      padding-top: 10px;
+      line-height: 1;
+  }
+  
+  .sub-text_1 {
+      font-size: clamp(24px, 5vw, 48px);
+      font-weight: 600;
+      color: #585858;
+      padding-bottom: 10px;
+      margin: 0;
+      line-height: 1.2;
+  }
+  
+  .sub-text_2 {
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 600;
+      color: #585858;
+      padding-bottom: 15px;
+      margin: 0;
+      line-height: 1.2;
+  }
+  
+  .Sub_3-3, .Sub_3-6 {
+      font-size: clamp(14px, 2.5vw, 23px);
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: left;
+  }
+  
+  .Sub_3-3 pre, .Sub_3-6 pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: 'Inter', sans-serif;
+      font-size: px;
+      margin: 0;
+      line-height: 1.5;
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 768px) {
+      /* Tablet and up */
+
+       .mobile-menu-container {
+    display: block;
+  }
+  
+  .Sub_1-1 {
+    display: none;
+    padding-top: 20px;
+  }
+  
+  .Sub_1-1.show {
+    display: block;
+  }
+  
+  .Sub_1-1 nav {
+    flex-direction: column;
+  }
+  
+  .Sub_1-1 a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .Sub_1-1 a:last-child {
+    border-bottom: none;
+  }
+  
+  /* When menu is open, transform hamburger to X */
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+      .S1-b{
+        padding-left: 120px;
+      }
+      .S1-b p {
+        padding-left: -30px;
+      }
+      .Part_1 {
+          display: flex;
+          flex-wrap: wrap;
+      }
+      
+      .Sub_1-1 {
+          width: 60%;
+          justify-content: left;
+      }
+      
+      .Sub_1-2 {
+          width: 100%;
+          float: ;
+          font-size: 19px;
+          padding-left: 5%;
+      }
+
+      .Sub_1-2 h1 {
+        font-size: 44px;
+      }
+
+      .Sub_1-2 p{
+        margin-top: -20px;
+        font-size: 19px;
+      }
+
+      
+      
+      .Sub_1-3 {
+
+          width: 100%;
+          float: right;
+          margin-top: -40px;
+          margin-right: 5%;
+      }
+
+      .Sub_1-3 img{
+        margin-top: -50px;
+        height: 275px;
+        width: 700px;
+      }
+
+      .S3-b{
+        margin-top: -40px;
+      }
+      
+      .Part_2 {
+          margin-top: -210px;
+      }
+      
+      .Part_3 {
+          margin-top: -200px;
+          padding: 50px;
+      }
+
+      .Sub_3-5 img{
+        height: 30%;
+      }
+  }
+  
+  @media screen and (min-width: 1024px) {
+      /* Desktop */
+      .Part_1 {
+          height: 600px;
+      }
+      
+      .Sub_1-2 {
+          padding-top: 70px;
+          padding-left: 150px;
+      }
+      
+      .Sub_1-3 {
+          margin-top: -320px;
+          margin-right: 100px;
+      }
+      
+      .Part_2 {
+          min-height: 100vh;
+          margin-top: -350px;
+      }
+      
+      .Part_3 {
+          height: auto;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: -325px;
+          border-radius: 100px;
+          padding: 80px;
+      }
+      
+      .Sub_3-1 {
+        float: left;
+        width: 45%; /* Increased from 40% */
+        margin-top: 60px;
+    }
+      
+    .Sub_3-2 {
+        float: right;
+        width: 55%; /* Adjusted to accommodate larger image */
+        text-align: left;
+        margin-top: 60px;
+    }
+      
+      .Sub_3-3 {
+          clear: both;
+          margin-top: 55px;
+          width: 90%;
+      }
+      
+      .Sub_3-4 {
+        float: left;
+        width: 60%;
+        text-align: left;
+        margin-top: 60px;
+    }
+      
+      .Sub_3-5 {
+        float: left;
+        width: auto;
+        margin-top: 60px;
+        margin-right: 0;
+    }
+      .Sub_3-5 img{
+        height: 50%;
+      }
+      
+      .Sub_3-6 {
+          clear: both;
+          margin-top: 50px;
+          width: 90%;
+      }
+  }
+  
+  /* Import Google font */
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap');

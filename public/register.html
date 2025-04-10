@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="Styles/exter.css" />
+
+</head>
+<body>
+  <!-- Wave SVG background -->
+  <div class="wave">
+    <svg viewBox="0 0 1512 378" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 66.5C98.5 136.5 343.1 136.5 531 99C718.9 61.5 812.5 0.5 1084.5 96.5C1356.5 192.5 1466.5 49 1512 2V378H0V66.5Z" fill="#F5F0B8"/>
+    </svg>
+  </div>
+
+  <div class="Part_2">
+    <img src="Views/CLUB_LOGO-1.png" alt="Club Logo" class="overlapping-image" />
+    <form id="loginForm">
+      <center><h2>Sign In</h2></center>
+      <div class="Sub_2a">
+        <label for="username">Name.</label>
+        <input id="username" type="text" required />
+        <label for="enrollmentno">Enrollment No.</label>
+        <input id="enrollmentno" type="text" required />
+        <label for="email">Email.</label>
+        <input id="email" type="email" required />
+        <label for="phoneno">Phone No.</label>
+        <input id="phoneno" type="text" required />
+        <label for="password">Password.</label>
+        <input id="password" type="password" required />
+        <label for="confirmpassword">Confirm Password</label>
+        <input id="confirmpassword" type="password" required />
+        <button type="submit">Sign Up</button>
+        <p id="errormsg" style="color: red; text-align: center;"></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const name = document.getElementById("username").value.trim();  // This is actually the name field
+  const enrollmentno = document.getElementById("enrollmentno").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phoneno = document.getElementById("phoneno").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmpassword = document.getElementById("confirmpassword").value;
+  const errormsg = document.getElementById("errormsg");
+  errormsg.textContent = "";
+
+  // Create a username from enrollment number (since username is required in DB)
+  const username = enrollmentno;
+
+  // Form validation
+  if (!name || !enrollmentno || !email || !phoneno || !password || !confirmpassword) {
+    errormsg.textContent = "All fields are required.";
+    return;
+  }
+
+  if (!email.endsWith("@ifheindia.org")) {
+    errormsg.textContent = "Email must end with @ifheindia.org";
+    return;
+  }
+
+  if (!/^\d{10}$/.test(phoneno)) {
+    errormsg.textContent = "Phone number must be 10 digits.";
+    return;
+  }
+
+  if (password !== confirmpassword) {
+    errormsg.textContent = "Passwords do not match.";
+    return;
+  }
+
+  try {
+    // Send registration request to server
+    const response = await fetch("/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        username: username,
+        password: password,
+        name: name,
+        Enrollment_no: enrollmentno,
+        Email: email,
+        Phone_no: phoneno
+      }),
+      credentials: 'include' // Important for sessions
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Registration Successful! Please log in.");
+      window.location.href = "/login"; // Redirect to login page after successful registration
+    } else {
+      errormsg.textContent = data.message || "Registration failed. Please try again.";
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
+    errormsg.textContent = "SERVER ERROR. TRY AGAIN LATER";
+  }
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+*{
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.Part_1 {
+    background-color: #f5f0b8;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding-bottom: 10px;
+    min-height: 20px;
+    height: 50px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    margin-top: 10px;
+}
+.Sub_1-1 {
+    padding-top: 15px;
+    padding-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+.Sub_1-1 nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.Sub_1-1 a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 120px;
+    font-size: clamp(14px, 2vw, 16px);
+    white-space: nowrap;
+}
+.Part_2 {
+    text-align: center;
+    font-size: 87px;
+    margin-top: 40px;
+    text-decoration: none;
+}
+.Part_3 {
+    margin-left: 30px;
+    margin-top: 0px;
+    font-size: 50px;
+    font-weight: 30;
+}
+.Part_4{
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.Part_4 a{
+    padding-top: 20px;
+    padding-left: 30px;
+    font-size: 20px;
+    position: absolute;
+    text-decoration: none;
+    color: black;
+}
+.Sub_4-1{
+    border-radius: 10px;
+    padding-bottom: 10px;
+    height: 50px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.07);
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 768px) {
+    *{
+        width: auto;
+        height: auto;
+    }
+    
+    .Part_1{
+        display: ;
+        height : 120px; 
+        margin-top: 0;
+        padding-left: px;
+        padding-right: px;       
+    }
+
+    .Part_1 .Sub_1-1 nav {
+        margin-top: -5px ;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        text-align: center;
+        gap: 10px;
+        padding: 10px 0;
+      }
+      
+      /* Position each navigation link */
+      .Part_1 .Sub_1-1 nav a:nth-child(1) { /* HOME */
+        grid-column: 1;
+        grid-row: 1;
+        text-align: left;
+        padding-left: 130px;
+      }
+      
+      .Part_1 .Sub_1-1 nav a:nth-child(2) { /* ABOUT US */
+        grid-column: 1;
+        grid-row: 2;
+        text-align: left;
+        padding-left: 130px;
+      }
+      
+      .Part_1 .Sub_1-1 nav a:nth-child(3) { /* PLACEMENT */
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+        margin-left: -100px;
+      }
+      
+      .Part_1 .Sub_1-1 nav a:nth-child(4) { /* HELP */
+        grid-column: 2;
+        grid-row: 2;
+        text-align: right;
+        margin-left:-100px;
+      }
+
+    .Part_2{
+        font-size: 50px;
+        padding-bottom: 35px;
+    }
+
+    .Part_3{
+        font-size: 35px;
+    }
+
+    .Sub_4-1{
+        height: 65px;
+    }
+
+
+
+}

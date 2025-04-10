@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Styles/home_style.css">
+    </head>
+    <style>
+
+
+    </style>
+    <body>
+        <div class="S1">
+            <div class="S1-a">
+              <img src="Views/IBS.png" alt="" height="40px">
+            </div>
+
+            <div class="S1-b">
+                <img src="Views/CLUB_LOGO-1.png" alt="" height="100px" >
+                <p>BBA, PLACEMENT PORTAL</p>
+            </div>
+        </div>
+        
+        
+        <div class="Part_1">
+            <div class="mobile-menu-container">
+              <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            
+            <div class="Sub_1-1">
+              <nav>
+                <a href="">HOME</a>
+                <a href="">ABOUT US</a>
+                <a href="">PLACEMENT</a>
+                <a href="">INTERNSHIP</a>
+                <a href="">HELP</a>
+              </nav>
+            </div>
+
+           <div class="Sub_1-2">
+             <h1><pre>BBA 
+Placement Cell</pre></h1>
+             <p><pre>One stop for Placements and Interships
+for IBS Students.
+                </pre>
+            </p>
+            </div>
+
+            <div class="Sub_1-3">
+                <img src="Views/PC_LOGO.png" alt="" height="300px">
+                <div class="S3-b">
+                  <button onclick="window.location.href='register.html'">Sign Up</button>
+                  <button onclick="window.location.href='login.html'">Log In</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="Part_2">
+            
+        </div>
+
+        <div class="Part_3">
+            <div class="Sub_3-1">
+                <img src="Views/School.png" alt="" height="">
+            </div>
+
+            <div class="Sub_3-2">
+                <h1 class="icfai-text">ICFAI</h1>
+                <div class="sub-text-container">
+                    <h2 class="sub-text_1">BUSINESS  SCHOOL</h2>
+                    <h2 class="sub-text_1">HYDERABAD</h2>
+                </div>
+            </div>
+
+            <div class="Sub_3-3">
+                <pre>ICFAI was established in 1984 as a not-for-profit society with the broad objective of empowering citizens through world class quality education. The Institute announced its arrival into the Indian education fora by launching a high end, innovative professional program in financial analysis in 1985.</pre>
+            </div>
+
+            <div class="Sub_3-4">
+                <h1 class="NJ-text">N.J.</h1>
+                <div class="sub-text-container">
+                    <h2 class="sub-text_2">Yasawy</h2>
+                </div>
+            </div>
+
+            <div class="Sub_3-5">
+                <img src="Views/Sir.png" alt="" height="">
+            </div>
+
+            <div class="Sub_3-6">
+                <pre>Mr.N.J.Yasaswy (1950-2011), Founder of the ICFAI Group of educational institutions and a pioneer in promoting higher education in the private sector had a brilliant academic career: B.Com (Andhra University 1969 – First Rank), CA Inter (May 1971 – First Rank), CA Final (May 1973 – First Rank), ICWA Inter (July 1970 – First Rank) and ICWA Final (July 1972 – First Rank). He was the recipient of the Basu Foundation Award for the Best Student of the Year from both – The Institute of Cost and Works Accountants of India (in 1972) and The Institute of Chartered Accountants of India (in 1973).
+                </pre>
+            </div>
+
+        </div>
+        
+ <script>
+    // Add this script at the end of your HTML body
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const menu = document.querySelector('.Sub_1-1');
+  
+  menuToggle.addEventListener('click', function() {
+    menu.classList.toggle('show');
+    menuToggle.classList.toggle('active');
+  });
+  
+  // Close menu when a link is clicked
+  const navLinks = document.querySelectorAll('.Sub_1-1 a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      menu.classList.remove('show');
+      menuToggle.classList.remove('active');
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    const isClickInsideMenu = menuToggle.contains(event.target) || menu.contains(event.target);
+    if (!isClickInsideMenu && menu.classList.contains('show')) {
+      menu.classList.remove('show');
+      menuToggle.classList.remove('active');
+    }
+  });
+  
+  // Adjust menu visibility on window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 767 && menu.classList.contains('show')) {
+      menu.classList.remove('show');
+      menuToggle.classList.remove('active');
+    }
+  });
+});
+ </script>
+
+    </body>
+</html>

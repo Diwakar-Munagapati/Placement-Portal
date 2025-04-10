@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Development Internships</title>
+    <link rel="stylesheet" href="Comp_details_Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+ @media screen and (max-width: 768px) {
+  .Part_4 {
+    margin: 10px;
+  }
+
+  .Part_4 .Sub_4-1 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: 225px;
+  }
+  
+  /* Content section (top) */
+  .Sub_4a {
+    margin-top: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    order: 1; /* Display first */
+    overflow: hidden; /* Hide overflow content */
+  }
+  
+  .Sub_4a h1 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 3px;
+  }
+  
+  .Sub_4a p {
+    margin: 8px 0;
+    font-size: 15px;
+  }
+  
+  .Sub_4a pre {
+    white-space: pre-wrap;
+    font-size: 12px;
+    margin: 3px 0;
+  }
+  
+  .Sub_4a hr {
+    margin: 5px 0;
+    width: 100%;
+  }
+  
+  /* Image and button section (bottom) */
+  .Sub_4b {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    align-items: center;
+    order: 2; /* Display after content */
+    margin-top: 40px;
+    padding-right: 50px; /* Added to bring button inside */
+  }
+  
+  .Sub_4bimg {
+    margin-right: 10px; /* Small gap between image and button */
+  }
+  
+  .Sub_4b img {
+    max-width: 100px; /* Bigger image */
+    height: 20%;
+    margin: 0;
+    top:150px;
+    left: 10px;
+  }
+  
+  .Sub_4bbut {
+    flex-grow: 1; /* Allow button container to take remaining space */
+  }
+  
+  .Sub_4b button {
+    width: 25%; /* Auto width based on content */
+    min-width: 100px;
+    padding: px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    margin-right: 150px;
+    margin-top: 20%;
+    left: 10%;
+    background-color;
+  }
+}
+
+.Sub_4b img {
+  position: absolute;
+  max-width: 100%;
+  margin-top: 0%;
+  margin-right: 0%;
+  right: 30px;
+  max-height: 80px;
+  margin-bottom: 0px; 
+  bottom: 90px;
+  object-fit: contain;
+}
+      </style>
+</head>
+<body>
+    <div class="S1">
+        <div class="S1-a">
+            <img src="Views/CLUB_LOGO-2.png" alt="Club Logo" >
+        </div>
+
+        <div class="S1-b">
+            <nav>
+                <a href="Home.html.html">PLACEMENT</a>
+                <a href="home-1.html">HELP</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="Part_4">
+        <div class="Sub_4-1">
+            <div class="Sub_4a">
+                <a href="#">
+                    <h1 id="companyName">Loading...</h1>                
+                    <p id="jobTitle">Loading...</p>
+                    <pre id="jobSummary">Loading...</pre>
+                </a>
+                <hr>
+                <pre id="jobStats">Loading...</pre>
+            </div>
+
+            <div class="Sub_4b">
+                <div class="Sub_4bimg">
+                <img src="comp_logo.png" alt="Company Logo">
+                </div>
+                <div class="Sub_4bbut">
+                <button id="applyButton">Apply</button>
+                </div>
+            </div>           
+        </div>
+    </div>
+    
+    <div class="Part_5">
+        <h1>Job Description</h1>
+        <hr>
+        <div class="Sub_5-1">
+            <label>Job Title : </label><span id="JT">Loading...</span><br><br>
+            <label>Company : </label><span id="Company">Loading...</span><br><br>
+            <label>Location : </label><span id="Location">Loading...</span><br><br>
+            <label>Duration : </label><span id="Duration">Loading...</span><br><br>
+            <label>About Company : </label><br><span id="AC">Loading...</span><br><br>
+            <label>Responsibilities : </label><span id="Responsibilities">Loading...</span><br><br>
+            <label>Requirements : </label><span id="Requirements">Loading...</span><br><br>
+            <label>Benefits : </label><span id="Benifit">Loading...</span><br><br>
+        </div>
+    </div>
+
+    <script>
+        // Utility function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Job ID from URL
+        const jobId = getUrlParameter('id');
+        if (!jobId) {
+            window.location.href = 'index.html';
+        }
+
+        // Default job table
+        const jobTable = 'job1'; // Change based on which jobs page you're viewing
+
+        // Check if user is logged in
+        function checkLoginStatus() {
+            return fetch('/api/user', {
+                method: 'GET',
+                credentials: 'include' // Include cookies
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json().then(data => {
+                        if (data.success && data.user) {
+                            // Store user ID in local storage as backup
+                            localStorage.setItem('userId', data.user.id);
+                            return data.user.id;
+                        }
+                        return null;
+                    });
+                }
+                return null;
+            })
+            .catch(() => {
+                // Fall back to localStorage if session check fails
+                return localStorage.getItem('userId');
+            });
+        }
+
+        // Check if user has already applied for this job
+        function checkApplicationStatus(userId) {
+            if (!userId) return Promise.resolve(false);
+            
+            return fetch(`/api/application-status?userId=${userId}&jobId=${jobId}&jobTable=${jobTable}`, {
+                credentials: 'include' // Include cookies
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.hasApplied) {
+                    document.getElementById('applyButton').textContent = 'Applied';
+                    document.getElementById('applyButton').disabled = true;
+                }
+                return data.hasApplied;
+            })
+            .catch(error => {
+                console.error('Error checking application status:', error);
+                return false;
+            });
+        }
+
+        // Function to submit job application
+        function submitJobApplication() {
+            checkLoginStatus().then(userId => {
+                if (!userId) {
+                    alert('Please log in to apply for this job');
+                    // Save current page URL to return after login
+                    localStorage.setItem('returnTo', window.location.href);
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                fetch('/api/apply', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        jobId: jobId,
+                        jobTable: jobTable
+                    }),
+                    credentials: 'include' // Include cookies
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            // Session expired or not logged in
+                            alert('Your session has expired. Please log in again.');
+                            localStorage.setItem('returnTo', window.location.href);
+                            window.location.href = '/login';
+                            throw new Error('Not logged in');
+                        }
+                        return response.json().then(data => {
+                            throw new Error(data.message || 'Application failed');
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Application submitted successfully!');
+                        document.getElementById('applyButton').textContent = 'Applied';
+                        document.getElementById('applyButton').disabled = true;
+                    } else {
+                        alert(data.message || 'Failed to submit application. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    if (error.message !== 'Not logged in') {
+                        console.error('Error submitting application:', error);
+                        alert('Failed to submit application: ' + error.message);
+                    }
+                });
+            });
+        }
+
+        // Load job details
+        fetch(`/api/jobs1/${jobId}`, {
+            credentials: 'include' // Include cookies
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Job not found');
+            }
+            return response.json();
+        })
+        .then(job => {
+            // Update page with job details
+            document.title = `${job.title} at ${job.company}`;
+            document.getElementById('companyName').textContent = job.company;
+            document.getElementById('jobTitle').textContent = job.title;
+            document.getElementById('jobSummary').textContent = `Industry - ${job.industry}  |  Stipend - ${job.stipend} | ${job.location}`;
+            document.getElementById('jobStats').textContent = `Openings - ${job.openings}                        Applications - ${job.applications}`;
+            
+            document.getElementById('JT').textContent = job.title;
+            document.getElementById('Company').textContent = job.company;
+            document.getElementById('Location').textContent = job.location;
+            document.getElementById('Duration').textContent = job.duration;
+            document.getElementById('AC').textContent = job.about_company;
+            document.getElementById('Responsibilities').textContent = job.responsibilities;
+            document.getElementById('Requirements').textContent = job.requirements;
+            document.getElementById('Benifit').textContent = job.benefits;
+            
+            // Check application status after loading job details
+            return checkLoginStatus().then(checkApplicationStatus);
+        })
+        .catch(error => {
+            console.error('Error fetching job data:', error);
+            alert('Failed to load job details. Please try again later.');
+            window.location.href = 'index.html';
+        });
+
+        // Set up apply button handler
+        document.getElementById('applyButton').addEventListener('click', submitJobApplication);
+    </script>
+</body>
+</html>

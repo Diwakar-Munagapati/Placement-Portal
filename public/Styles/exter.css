@@ -1,0 +1,154 @@
+/*wave styling */
+.wave {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+  }
+/* Base styles */
+body {
+    background-color: #eddf9e;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.Part_1 {
+    background-image: url('ibslgo2.png');
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    min-height: 100 vh;
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+}
+
+.Part_2 {
+    position:relative ;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,10% );
+    background-color: white;
+    padding: 7px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    min-height: 200px;
+}
+
+.Sub_2a{
+    max-height: 1000px;
+}
+
+.Sub_2a input {
+    display: block;
+    width: 95%;
+    margin-bottom: 15px;
+    border: 1px solid #C7B796;
+    height: 30px;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.Sub_2a button {
+    width: 120px;   
+    height: 40px;
+    background-color: #F5F0B8;
+    border: none;
+    border-radius: 15px;
+    margin: 15px auto 0;
+    color: black;
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Sub_2a label {
+    color: #777777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.overlapping-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 120px ;
+    height: 120px;
+    z-index: 300;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Login form adjustments to accommodate logo */
+#loginForm {
+    padding-top: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .Part_1 {
+        background-position: center bottom;
+    }
+    
+    .overlapping-image {
+        width: 70px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Part_2 {
+        padding: 20px;
+        width: 60%;
+        margin-top: -400px;
+    }
+    
+    .Sub_2a button {
+        width: 100px;
+    }
+    
+    .overlapping-image {
+        width: 200px;
+    }
+}
+
+/* Fix for very small screens */
+@media screen and (max-height: 500px) {
+    .Part_2 {
+        position: relative;
+        margin: 60px auto 20px;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+    
+    .Part_1 {
+        min-height: auto;
+        padding-bottom: 50px;
+    }
+    
+    .overlapping-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .Part_2{
+        margin-top: -360px;
+    }
+
+    .overlapping-image {
+        width: 200px;
+    }
+}
