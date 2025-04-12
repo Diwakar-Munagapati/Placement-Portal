@@ -42,11 +42,12 @@ app.use((req, res, next) => {
 // Static files middleware comes after our custom middleware
 app.use(express.static("public"));
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root", // Your user name for MySQL
-  password: "", // Your password of MySQL
-  database: "PROJECT_BBA",  // Your database name  which is to be accessed 
+const db = mysql.createConnection({  
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT 
 });
 
 db.connect((err) => {
