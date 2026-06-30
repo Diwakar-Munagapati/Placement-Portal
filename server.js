@@ -30,24 +30,15 @@ app.use(
   })
 );
 
-// Custom middleware to override default index.html behavior
-app.use((req, res, next) => {
-  if (req.path === '/' || req.path === '/index.html') {
-    res.sendFile(path.join(__dirname, "public", "home.html"));
-  } else {
-    next();
-  }
-});
-
 // Static files middleware comes after our custom middleware
 app.use(express.static("public"));
 
-const db = mysql.createConnection({  
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT 
+const db = mysql.createConnection({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "Bornon25july",
+  database: process.env.DB_NAME || "PROJECT_BBA",
+  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306
 });
 
 db.connect((err) => {
@@ -228,6 +219,59 @@ app.get("/api/jobs2/:id", (req, res) => {
   });
 });
 
+app.get("/api/jobs3", (req, res) => {
+  const query = "SELECT * FROM job3 ORDER BY id DESC";
+  
+  db.query(query, (error, jobList) => {
+    if (error) {
+      console.error("Error fetching jobs from job3:", error);
+      return res.status(500).json({ message: "Database error" });
+    }
+    res.status(200).json(jobList);
+  });
+});
+app.get("/api/jobs3/:id", (req, res) => {
+  const jobId = req.params.id;
+  const query = "SELECT * FROM job3 WHERE id = ?";
+
+  db.query(query, [jobId], (error, jobData) => {
+    if (error) {
+      console.error("Error fetching job from job3:", error);
+      return res.status(500).json({ message: "Database error" });
+    }
+    if (jobData.length === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    res.status(200).json(jobData[0]);
+  });
+});
+
+app.get("/api/jobs4", (req, res) => {
+  const query = "SELECT * FROM job4 ORDER BY id DESC";
+  
+  db.query(query, (error, jobList) => {
+    if (error) {
+      console.error("Error fetching jobs from job4:", error);
+      return res.status(500).json({ message: "Database error" });
+    }
+    res.status(200).json(jobList);
+  });
+});
+app.get("/api/jobs4/:id", (req, res) => {
+  const jobId = req.params.id;
+  const query = "SELECT * FROM job4 WHERE id = ?";
+
+  db.query(query, [jobId], (error, jobData) => {
+    if (error) {
+      console.error("Error fetching job from job4:", error);
+      return res.status(500).json({ message: "Database error" });
+    }
+    if (jobData.length === 0) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    res.status(200).json(jobData[0]);
+  });
+});
 // Create job application table if it doesn't exist
 db.query(`
   CREATE TABLE IF NOT EXISTS user_job_applications (
@@ -247,6 +291,8 @@ db.query(`
     console.log("user_job_applications table ready");
   }
 });
+
+
 
 
 
@@ -463,6 +509,39 @@ app.get("/api/user", (req, res) => {
   });
 });
 
-app.listen(3000, function () {
-  console.log("SERVER STARTED ON PORT 3000");
+// Add this endpoint to your server.js file, before the app.listen line
+
+
+app.get("/api/companyLogo/:table/:id", (req, res) => {
+  const jobId = parseInt(req.params.id);
+  const jobTable = req.params.table;
+
+  const validTables = ['job1', 'job2', 'job3', 'job4'];
+  if (!validTables.includes(jobTable)) {
+    return res.status(400).send('Invalid job table');
+  }
+  
+  // Query to get the logo BLOB from the specified job table
+  db.query(`SELECT logo FROM ${jobTable} WHERE id = ?`, [jobId], (err, result) => {
+    if (err) {
+      console.error(`Error fetching logo from ${jobTable}:`, err);
+      return res.status(500).send('Error fetching logo');
+    }
+    
+    if (result.length > 0 && result[0].logo) {
+      // Set appropriate content type
+      res.setHeader('Content-Type', 'image/jpeg'); // Adjust based on your image format
+      
+      // Send the BLOB data as response
+      res.send(result[0].logo);
+    } else {
+      // If no logo found, return 404
+      res.status(404).send('Logo not found');
+    }
+  });
+});
+
+const PORT = process.env.PORT || 1212;
+app.listen(PORT, function () {
+  console.log(`SERVER STARTED ON PORT ${PORT}`);
 });

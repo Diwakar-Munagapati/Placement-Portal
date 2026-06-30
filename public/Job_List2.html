@@ -32,64 +32,87 @@
     </div>
 
     <script>
-       // Fetch all jobs from the job2 table
-fetch('/api/jobs2')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch jobs');
-        }
-        return response.json();
-    })
-    .then(jobs => {
-        const jobListingsContainer = document.getElementById('jobListings');
-        // Clear loading message
-        jobListingsContainer.innerHTML = '';
-        
-        if (jobs.length === 0) {
-            const noJobsDiv = document.createElement('div');
-            noJobsDiv.className = 'Sub_4-1';
-            noJobsDiv.innerHTML = '<div class="Sub_4a"><h1>No jobs available</h1><p>Please check back later for new opportunities.</p></div>';
-            jobListingsContainer.appendChild(noJobsDiv);
-            return;
-        }
-        
-        jobs.forEach(job => {
-            const jobCard = document.createElement('div');
-            jobCard.className = 'Sub_4-1';
-
-             // Safely handle potentially missing data
-             const company = job.company || 'Company Name Not Available';
+       document.addEventListener('DOMContentLoaded', () => {
+    // Get the container where job listings will be displayed
+    const jobListingsContainer = document.getElementById('jobListings');
+    
+    // Display a loading message while we fetch the jobs
+    jobListingsContainer.innerHTML = '<div class="Sub_4-1"><div class="Sub_4a"><h2>Loading jobs...</h2></div></div>';
+    
+    // Step 1: Fetch all jobs from the server using the API endpoint
+    fetch('/api/jobs2')
+        .then(response => {
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error(`Failed to fetch jobs: ${response.status} ${response.statusText}`);
+            }
+            // Parse the JSON response
+            return response.json();
+        })
+        .then(jobs => {
+            // Clear the loading message
+            jobListingsContainer.innerHTML = '';
+            
+            // Step 2: Check if there are any jobs to display
+            if (jobs.length === 0) {
+                // If no jobs, display a message
+                const noJobsDiv = document.createElement('div');
+                noJobsDiv.className = 'Sub_4-1';
+                noJobsDiv.innerHTML = '<div class="Sub_4a"><h1>No jobs available</h1><p>Please check back later for new opportunities.</p></div>';
+                jobListingsContainer.appendChild(noJobsDiv);
+                return;
+            }
+            
+            // Step 3: For each job, create and add a job card to the container
+            jobs.forEach(job => {
+                // Create a new div for the job card
+                const jobCard = document.createElement('div');
+                jobCard.className = 'Sub_4-1';
+                
+                // Extract job details, providing defaults for missing data
+                const company = job.company || 'Company Name Not Available';
                 const title = job.title || 'Position Not Specified';
                 const industry = job.industry || 'N/A';
                 const stipend = job.stipend || 'N/A';
                 const location = job.location || 'Remote/Not Specified';
-            
-            jobCard.innerHTML = `
-                <div class="Sub_4a">
-                        <a href="job_details1.html?id=${job.id}">
+                
+                // Step 4: Create the URL for the company logo using our new API endpoint
+                const logoUrl = job.id ? `/api/companyLogo/job2/${job.id}` : 'comp_logo.png';
+                
+                // Step 5: Build the HTML for the job card
+                jobCard.innerHTML = `
+                    <div class="Sub_4a">
+                        <a href="job_details2.html?id=${job.id}">
                             <h1>${company}</h1>
                             <p>${title}</p>
-                             <pre>Industry - ${industry} | Stipend - ${stipend} | &#128205;${location}</pre>
+                            <pre>Industry - ${industry} | Stipend - ${stipend} | &#128205;${location}</pre>
                         </a>
                     </div>
-                <div class="Sub_4b">
-                    <img src="comp_logo.png" alt="Company Logo">
-                </div>
-            `;
+                    <div class="Sub_4b">
+                        <img 
+                            src="${logoUrl}" 
+                            alt="${company} Logo" 
+                            onerror="this.src='comp_logo.png'; console.log('Failed to load logo for ${company}');"
+                        >
+                    </div>
+                `;
+                
+                // Step 6: Add the job card to the container
+                jobListingsContainer.appendChild(jobCard);
+            });
+        })
+        .catch(error => {
+            // Step 7: Handle any errors during fetching or processing
+            console.error('Error fetching jobs:', error);
+            jobListingsContainer.innerHTML = '';
             
-            jobListingsContainer.appendChild(jobCard);
+            // Display an error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'Sub_4-1';
+            errorDiv.innerHTML = '<div class="Sub_4a"><h1>Error</h1><p>Failed to load job listings. Please try again later.</p></div>';
+            jobListingsContainer.appendChild(errorDiv);
         });
-    })
-    .catch(error => {
-        console.error('Error fetching jobs:', error);
-        const jobListingsContainer = document.getElementById('jobListings');
-        jobListingsContainer.innerHTML = '';
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'Sub_4-1';
-        errorDiv.innerHTML = '<div class="Sub_4a"><h1>Error</h1><p>Failed to load job listings. Please try again later.</p></div>';
-        jobListingsContainer.appendChild(errorDiv);
-    });
+});
     </script>
 </body>
 </html>

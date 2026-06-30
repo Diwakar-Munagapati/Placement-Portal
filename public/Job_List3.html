@@ -6,28 +6,7 @@
     <title>Business Development Internships</title>
     <link rel="stylesheet" href="Comp_details_Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Logo image standardization */
-.Sub_4b {
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Sub_4b img {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  object-position: center;
-  background-color: white;
-  border-radius: 5px;
-}
-    </style>
 </head>
-
 <body>
     <div class="S1">
         <div class="S1-a">
@@ -41,7 +20,7 @@
         </div>
     </div>
     <div class="Part_2">
-        <p>Business Development Intern</p>
+        <p>Digital Marketing</p>
     </div>
     <div class="Part_4" id="jobListings">
         <!-- Jobs will be loaded here -->
@@ -61,7 +40,7 @@
     jobListingsContainer.innerHTML = '<div class="Sub_4-1"><div class="Sub_4a"><h2>Loading jobs...</h2></div></div>';
     
     // Step 1: Fetch all jobs from the server using the API endpoint
-    fetch('/api/jobs1')
+    fetch('/api/jobs3')
         .then(response => {
             // Check if the response is successful
             if (!response.ok) {
@@ -98,12 +77,12 @@
                 const location = job.location || 'Remote/Not Specified';
                 
                 // Step 4: Create the URL for the company logo using our new API endpoint
-                const logoUrl = job.id ? `/api/companyLogo/job1/${job.id}` : 'comp_logo.png';
+                const logoUrl = job.id ? `/api/companyLogo/job3/${job.id}` : 'comp_logo.png';
                 
                 // Step 5: Build the HTML for the job card
                 jobCard.innerHTML = `
                     <div class="Sub_4a">
-                        <a href="job_details1.html?id=${job.id}">
+                        <a href="job_details3.html?id=${job.id}">
                             <h1>${company}</h1>
                             <p>${title}</p>
                             <pre>Industry - ${industry} | Stipend - ${stipend} | &#128205;${location}</pre>
@@ -134,6 +113,6 @@
             jobListingsContainer.appendChild(errorDiv);
         });
 });
-   </script>
+    </script>
 </body>
 </html>

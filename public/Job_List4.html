@@ -61,7 +61,7 @@
     jobListingsContainer.innerHTML = '<div class="Sub_4-1"><div class="Sub_4a"><h2>Loading jobs...</h2></div></div>';
     
     // Step 1: Fetch all jobs from the server using the API endpoint
-    fetch('/api/jobs1')
+    fetch('/api/jobs4')
         .then(response => {
             // Check if the response is successful
             if (!response.ok) {
@@ -98,12 +98,12 @@
                 const location = job.location || 'Remote/Not Specified';
                 
                 // Step 4: Create the URL for the company logo using our new API endpoint
-                const logoUrl = job.id ? `/api/companyLogo/job1/${job.id}` : 'comp_logo.png';
+                const logoUrl = job.id ? `/api/companyLogo/job4/${job.id}` : 'comp_logo.png';
                 
                 // Step 5: Build the HTML for the job card
                 jobCard.innerHTML = `
                     <div class="Sub_4a">
-                        <a href="job_details1.html?id=${job.id}">
+                        <a href="job_details4.html?id=${job.id}">
                             <h1>${company}</h1>
                             <p>${title}</p>
                             <pre>Industry - ${industry} | Stipend - ${stipend} | &#128205;${location}</pre>

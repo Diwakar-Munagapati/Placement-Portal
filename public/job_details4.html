@@ -132,8 +132,7 @@
 
             <div class="Sub_4b">
                 <div class="Sub_4bimg">
-                <!-- Add this where you want the logo to appear -->
-<img id="companyLogo" src="comp_logo.png" alt="Company Logo" class="company-logo">
+                    <img id="companyLogo" src="comp_logo.png" alt="Company Logo" class="company-logo">
                 </div>
                 <div class="Sub_4bbut">
                 <button id="applyButton">Apply</button>
@@ -158,7 +157,7 @@
     </div>
 
     <script>
-        // Utility function to get URL parameters
+            // Utility function to get URL parameters
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -309,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load job details
     console.log('Fetching job details...');
-    fetch(`/api/jobs1/${jobId}`, {
+    fetch(`/api/jobs4/${jobId}`, {
         credentials: 'include' // Include cookies
     })
     .then(response => {
@@ -354,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const companyLogoElement = document.getElementById('companyLogo');
         if (companyLogoElement) {
             // Use the endpoint for serving logos
-            companyLogoElement.src = `/api/companyLogo/job1/${job.id}`;
+            companyLogoElement.src = `/api/companyLogo/job4/${job.id}`;
             companyLogoElement.alt = `${job.company} Logo`;
             // Add error handler to use default logo if fetching fails
             companyLogoElement.onerror = function() {
