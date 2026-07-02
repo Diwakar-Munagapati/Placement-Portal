@@ -56,6 +56,10 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // Routes
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "home.html"));
+});
+
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
@@ -541,7 +545,7 @@ app.get("/api/companyLogo/:table/:id", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 1212;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
   console.log(`SERVER STARTED ON PORT ${PORT}`);
 });
